@@ -1,6 +1,7 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
+const booleanSchema = z.coerce.boolean();
 const portSchema = z.coerce.number().int().positive().min(1).max(65535);
 
 export const env = createEnv({
@@ -11,6 +12,7 @@ export const env = createEnv({
     AUTH_SECRET: z.string(),
     AUTH_DISCORD_ID: z.string(),
     AUTH_DISCORD_SECRET: z.string(),
+    AUTH_TRUST_HOST: booleanSchema,
     POSTGRES_USER: z.string(),
     POSTGRES_PASSWORD: z.string(),
     POSTGRES_HOST: z.string(),
