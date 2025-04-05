@@ -5,6 +5,7 @@ AUTH_SECRET=$(openssl rand -hex 64)
 read -p "Enter your AUTH_DISCORD_ID: " AUTH_DISCORD_ID
 read -p "Enter your AUTH_DISCORD_SECRET: " AUTH_DISCORD_SECRET
 AUTH_TRUST_HOST="true"
+AUTH_URL="http://localhost:3000"
 
 POSTGRES_USER="postgres"
 POSTGRES_PASSWORD=$(openssl rand -hex 64)

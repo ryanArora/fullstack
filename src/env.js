@@ -26,6 +26,7 @@ export const env = createEnv({
     AUTH_DISCORD_ID: z.string(),
     AUTH_DISCORD_SECRET: z.string(),
     AUTH_TRUST_HOST: trueSchema,
+    AUTH_URL: z.string().url(),
     POSTGRES_USER: z.string(),
     POSTGRES_PASSWORD: z.string(),
     POSTGRES_HOST: z.string(),
