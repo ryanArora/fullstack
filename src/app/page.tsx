@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { LatestPost } from "~/app/_components/post";
 import { auth } from "~/server/auth";
+import { blob } from "~/server/blob";
 import { api, HydrateClient } from "~/trpc/server";
 
 export default async function Home() {
@@ -10,6 +11,14 @@ export default async function Home() {
 
   if (session?.user) {
     void api.post.getLatest.prefetch();
+  }
+
+  let bucketCount = "IDK";
+  try {
+    const buckets = await blob.listBuckets();
+    bucketCount = buckets.length.toString();
+  } catch (error) {
+    console.error("Error listing buckets:", error);
   }
 
   return (
@@ -60,6 +69,10 @@ export default async function Home() {
               </Link>
             </div>
           </div>
+
+          <p className="text-center text-2xl text-white">
+            Bucket count: {bucketCount}
+          </p>
 
           {session?.user && <LatestPost />}
         </div>
