@@ -3,7 +3,8 @@ import { env } from "~/env";
 
 export const blob = new Minio.Client({
   endPoint: env.MINIO_ENDPOINT,
-  useSSL: env.MINIO_ENDPOINT.startsWith("https://"),
+  port: env.MINIO_PORT,
+  useSSL: env.MINIO_USE_SSL,
   accessKey: env.MINIO_USER,
   secretKey: env.MINIO_PASSWORD,
 });
