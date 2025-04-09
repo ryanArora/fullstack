@@ -85,6 +85,7 @@ RUN apt update && \
     apt upgrade -y && \
     apt install -y openssl postgresql-client && \
     rm -rf /var/lib/apt/lists/*
+RUN corepack disable
 WORKDIR /app
 
 ENV NODE_ENV=production
