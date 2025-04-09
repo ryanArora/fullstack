@@ -85,7 +85,6 @@ RUN apt update && \
     apt upgrade -y && \
     apt install -y openssl postgresql-client && \
     rm -rf /var/lib/apt/lists/*
-RUN npm install -g corepack@latest
 WORKDIR /app
 
 ENV NODE_ENV=production
