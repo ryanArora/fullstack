@@ -23,6 +23,7 @@ export const env = createEnv({
       .enum(["development", "test", "production"])
       .default("development"),
     NEXT_TELEMETRY_DISABLED: trueSchema,
+    PORT: portSchema,
     AUTH_SECRET: z.string(),
     AUTH_DISCORD_ID: z.string(),
     AUTH_DISCORD_SECRET: z.string(),
@@ -39,7 +40,6 @@ export const env = createEnv({
     MINIO_ENDPOINT: z.string(),
     MINIO_PORT: portSchema,
     MINIO_USE_SSL: booleanSchema,
-    PORT: portSchema,
   },
   client: {},
   experimental__runtimeEnv: {},
