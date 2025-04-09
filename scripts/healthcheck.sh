@@ -13,7 +13,7 @@ postgres_success=false
 for i in $(seq 1 $HEALTHCHECKS); do
   echo "Healthcheck for postgres $i/$HEALTHCHECKS..."
 
-  if psql -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c "SELECT 1;"; then
+  if psql "$POSTGRES_URL" -c "SELECT 1;"; then
     echo "Success on attempt $i"
     postgres_success=true
     break
