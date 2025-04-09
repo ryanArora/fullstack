@@ -39,6 +39,7 @@ export const env = createEnv({
     MINIO_ENDPOINT: z.string(),
     MINIO_PORT: portSchema,
     MINIO_USE_SSL: booleanSchema,
+    PORT: portSchema,
   },
   client: {},
   experimental__runtimeEnv: {},
