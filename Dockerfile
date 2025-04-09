@@ -4,6 +4,7 @@ FROM node:22.14.0-slim AS base
 FROM base AS deps
 RUN apt update && \
     apt upgrade -y && \
+    apt install -y openssl && \
     rm -rf /var/lib/apt/lists/*
 RUN npm install -g corepack@latest
 WORKDIR /app
@@ -23,6 +24,7 @@ RUN \
 FROM base AS builder
 RUN apt update && \
     apt upgrade -y && \
+    apt install -y openssl && \
     rm -rf /var/lib/apt/lists/*
 RUN npm install -g corepack@latest
 WORKDIR /app
@@ -81,7 +83,7 @@ RUN \
 FROM base AS runner
 RUN apt update && \
     apt upgrade -y && \
-    apt install -y postgresql-client && \
+    apt install -y openssl postgresql-client && \
     rm -rf /var/lib/apt/lists/*
 RUN npm install -g corepack@latest
 WORKDIR /app
