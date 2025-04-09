@@ -19,6 +19,6 @@ docker compose down
 ### After
 
 ```bash
-docker compose up    # Start postgres, minio (local S3)
+docker compose up    # Start postgres, minio
 pnpm dev             # Start NextJS
 ```
