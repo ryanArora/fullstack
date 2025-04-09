@@ -9,6 +9,7 @@
     "db:migrate": "prisma migrate deploy",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
+    "db:seed": "prisma db seed",
     "dev": "next dev --turbo",
     "format": "prettier --check \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
     "format:fix": "prettier --write \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
@@ -18,7 +19,8 @@
     "preview": "next build && next start",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "env": "./scripts/generateEnv.sh"
+    "generate-env": "./scripts/generateEnv.sh",
+    "healthcheck": "./scripts/healthcheck.sh"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.8.0",
@@ -50,11 +52,12 @@
     "prettier-plugin-tailwindcss": "^0.6.11",
     "prisma": "^6.6.0",
     "tailwindcss": "^4.1.3",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.29.1"
   },
-  "ct3aMetadata": {
-    "initVersion": "7.39.3"
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "packageManager": "pnpm@10.8.0",
   "engines": {
