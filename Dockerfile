@@ -4,7 +4,6 @@ FROM node:22.14.0-slim AS base
 FROM base AS deps
 RUN apt update && \
     apt upgrade -y && \
-    apt install -y postgresql-client && \
     rm -rf /var/lib/apt/lists/*
 RUN npm install -g corepack@latest
 WORKDIR /app
@@ -24,7 +23,6 @@ RUN \
 FROM base AS builder
 RUN apt update && \
     apt upgrade -y && \
-    apt install -y postgresql-client && \
     rm -rf /var/lib/apt/lists/*
 RUN npm install -g corepack@latest
 WORKDIR /app
@@ -93,20 +91,16 @@ ENV NODE_ENV=production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/public ./public
-
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma/
+COPY --chown=nextjs:nodejs --chmod=755 ./scripts/healthcheck.sh ./scripts/healthcheck.sh
+
+RUN npm install -g prisma
 
 USER nextjs
-
 EXPOSE 3000
-
 ENV PORT=3000
-
-# server.js is created by next build from the standalone output
-# https://nextjs.org/docs/pages/api-reference/config/next-config-js/output
 ENV HOSTNAME="0.0.0.0"
-CMD ["node", "server.js"]
+CMD ["sh", "-c", "./scripts/healthcheck.sh && npx prisma migrate deploy && node server.js"]
