@@ -1,5 +1,5 @@
-import { blob } from "~/server/blob";
 import { db } from "~/server/db";
+import { blob } from "~/server/blob";
 
 async function clearDatabase() {
   const tables = await db.$queryRaw<{ table_name: string }[]>`
