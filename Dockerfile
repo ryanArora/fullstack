@@ -83,7 +83,7 @@ RUN \
 FROM base AS runner
 RUN apt update && \
     apt upgrade -y && \
-    apt install -y openssl postgresql-client && \
+    apt install -y openssl postgresql-client curl && \
     rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
