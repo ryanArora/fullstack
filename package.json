@@ -26,7 +26,7 @@
     "@auth/prisma-adapter": "^2.8.0",
     "@prisma/client": "^6.6.0",
     "@t3-oss/env-nextjs": "^0.12.0",
-    "@tanstack/react-query": "^5.72.2",
+    "@tanstack/react-query": "^5.76.0",
     "@trpc/client": "^11.0.4",
     "@trpc/react-query": "^11.0.4",
     "@trpc/server": "^11.0.4",
